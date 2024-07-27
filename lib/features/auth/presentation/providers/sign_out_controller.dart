@@ -11,6 +11,5 @@ class SignOutController extends ChangeNotifier {
   Future<void> signOut() async {
     await signOutUseCase(const NoParams());
     notifyListeners();
-    print('done');
   }
 }
