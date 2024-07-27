@@ -47,7 +47,7 @@ class _App extends StatelessWidget {
         ],
         child: MaterialApp.router(
           debugShowCheckedModeBanner: false,
-          title: 'Chat App',
+          title: 'PingoLearn Demo',
           scaffoldMessengerKey: kScaffoldMessengerKey,
           theme: kTheme,
           routerConfig: router,
