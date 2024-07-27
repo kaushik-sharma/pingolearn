@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import '../../../../core/usecases/usecase.dart';
 import '../../data/models/sign_up_request_model.dart';
 
 import '../../data/models/sign_in_request_model.dart';
@@ -10,12 +9,10 @@ enum AuthMode { signIn, signUp }
 class AuthController extends ChangeNotifier {
   final SignUpUseCase signUpUseCase;
   final SignInUseCase signInUseCase;
-  final SignOutUseCase signOutUseCase;
 
   AuthController({
     required this.signUpUseCase,
     required this.signInUseCase,
-    required this.signOutUseCase,
   });
 
   final _formKey = GlobalKey<FormState>();
@@ -75,11 +72,6 @@ class AuthController extends ChangeNotifier {
     );
     _isLoading = false;
     notifyListeners();
-    return result.fold<bool>((left) => false, (right) => true);
-  }
-
-  Future<bool> signOut() async {
-    final result = await signOutUseCase(const NoParams());
     return result.fold<bool>((left) => false, (right) => true);
   }
 

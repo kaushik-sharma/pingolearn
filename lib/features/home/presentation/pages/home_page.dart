@@ -46,23 +46,26 @@ class _HomePageHandlerState extends State<_HomePageHandler> {
           backgroundColor: Theme.of(context).primaryColor,
           actions: [
             IconButton(
-              onPressed: () {
-                _controller.getComments();
-              },
-              icon: const Icon(Icons.refresh),
+              onPressed: () {},
+              icon: const Icon(Icons.logout_rounded),
             ),
           ],
         ),
         body: _controller.isLoading
             ? const Center(child: CircularProgressIndicator())
-            : ListView.separated(
-                padding: EdgeInsets.all(20.r),
-                itemCount: _controller.comments.length,
-                itemBuilder: (context, index) => CommentCard(
-                    comment: _controller.comments[index],
-                    maskEmail: _controller.maskEmail),
-                separatorBuilder: (context, index) => 15.verticalSpace,
-              ),
+            : RefreshIndicator.adaptive(
+          onRefresh: () async {
+            await _controller.getComments();
+          },
+          child: ListView.separated(
+            padding: EdgeInsets.all(20.r),
+            itemCount: _controller.comments.length,
+            itemBuilder: (context, index) => CommentCard(
+                comment: _controller.comments[index],
+                maskEmail: _controller.maskEmail),
+            separatorBuilder: (context, index) => 15.verticalSpace,
+          ),
+        ),
       ),
     );
   }

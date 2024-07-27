@@ -109,7 +109,7 @@ class CommentCard extends StatelessWidget {
         foregroundColor: Colors.black,
         child: Center(
           child: Text(
-            comment.email.characters.first.toUpperCase(),
+            comment.name.characters.first.toUpperCase(),
             style: TextStyle(
               fontSize: 16.sp,
               height: 24.sp / 16.sp,

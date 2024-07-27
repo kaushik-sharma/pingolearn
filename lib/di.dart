@@ -71,7 +71,6 @@ void _injectAuth() {
   sl.registerFactory<AuthController>(() => AuthController(
         signUpUseCase: sl<SignUpUseCase>(),
         signInUseCase: sl<SignInUseCase>(),
-        signOutUseCase: sl<SignOutUseCase>(),
       ));
 }
 
