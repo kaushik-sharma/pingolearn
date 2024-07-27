@@ -28,7 +28,7 @@ Future<void> main() async {
 
   await di.sl<FirebaseRemoteConfig>().setConfigSettings(RemoteConfigSettings(
         fetchTimeout: const Duration(minutes: 1),
-        minimumFetchInterval: const Duration(hours: 1),
+        minimumFetchInterval: const Duration(minutes: 1),
       ));
 
   runApp(const _App());
