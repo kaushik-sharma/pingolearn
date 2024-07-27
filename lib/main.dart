@@ -42,9 +42,7 @@ class _App extends StatelessWidget {
     return ScreenUtilInit(
       designSize: const Size(393, 852),
       builder: (context, child) => MultiProvider(
-        providers: [
-          ChangeNotifierProvider(create: (context) => di.sl<AuthController>()),
-        ],
+        providers: [],
         child: MaterialApp.router(
           debugShowCheckedModeBanner: false,
           title: 'PingoLearn Demo',

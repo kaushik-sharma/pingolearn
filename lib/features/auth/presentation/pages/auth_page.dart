@@ -3,22 +3,35 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
-import '../../../../core/helpers/ui_helpers.dart';
-import '../../../../core/widgets/custom_text_field.dart';
-import '../providers/auth_controller.dart';
-import '../../../../router_config/router_config.dart';
 import 'package:provider/provider.dart';
 
+import '../../../../core/helpers/ui_helpers.dart';
 import '../../../../core/widgets/custom_button.dart';
+import '../../../../core/widgets/custom_text_field.dart';
+import '../../../../di.dart';
+import '../../../../router_config/router_config.dart';
+import '../providers/auth_controller.dart';
 
-class AuthPage extends StatefulWidget {
+class AuthPage extends StatelessWidget {
   const AuthPage({super.key});
 
   @override
-  State<AuthPage> createState() => _AuthPageState();
+  Widget build(BuildContext context) {
+    return ChangeNotifierProvider<AuthController>(
+      create: (context) => sl<AuthController>(),
+      builder: (context, child) => const _AuthPageHandler(),
+    );
+  }
 }
 
-class _AuthPageState extends State<AuthPage> {
+class _AuthPageHandler extends StatefulWidget {
+  const _AuthPageHandler();
+
+  @override
+  State<_AuthPageHandler> createState() => _AuthPageHandlerState();
+}
+
+class _AuthPageHandlerState extends State<_AuthPageHandler> {
   late final _controller = context.read<AuthController>();
 
   @override
