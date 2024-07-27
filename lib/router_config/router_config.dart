@@ -22,7 +22,7 @@ enum Routes {
   const Routes({required this.name, required this.path});
 }
 
-final GoRouter router = GoRouter(
+GoRouter get router => GoRouter(
   initialLocation: _getInitialRoute(),
   navigatorKey: _rootNavigatorKey,
   debugLogDiagnostics: true,

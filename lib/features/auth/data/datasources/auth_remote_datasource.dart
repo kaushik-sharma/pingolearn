@@ -1,11 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+
 import '../models/user_model.dart';
 
 abstract class AuthRemoteDatasource {
   Future<String> signUp(String email, String password, String name);
-
-  Future<void> saveUserInDb(String email, String name);
 
   Future<String> signIn(String email, String password);
 
@@ -23,17 +22,18 @@ class AuthRemoteDatasourceImpl extends AuthRemoteDatasource {
 
   @override
   Future<String> signUp(String email, String password, String name) async {
-    final UserCredential userCredential = await FirebaseAuth.instance
+    final UserCredential userCredential = await firebaseAuth
         .createUserWithEmailAndPassword(email: email, password: password);
 
-    await userCredential.user!.updateDisplayName(name);
+    final user = UserModel(email: email, name: name);
+    await firebaseFirestore.collection('users').add(user.toJson());
 
     return (await userCredential.user!.getIdToken())!;
   }
 
   @override
   Future<String> signIn(String email, String password) async {
-    final UserCredential userCredential = await FirebaseAuth.instance
+    final UserCredential userCredential = await firebaseAuth
         .signInWithEmailAndPassword(email: email, password: password);
 
     return (await userCredential.user!.getIdToken())!;
@@ -41,12 +41,6 @@ class AuthRemoteDatasourceImpl extends AuthRemoteDatasource {
 
   @override
   Future<void> signOut() async {
-    await FirebaseAuth.instance.signOut();
-  }
-
-  @override
-  Future<void> saveUserInDb(String email, String name) async {
-    final user = UserModel(email: email, name: name);
-    await firebaseFirestore.collection('users').add(user.toJson());
+    await firebaseAuth.signOut();
   }
 }

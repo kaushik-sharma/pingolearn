@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:internet_connection_checker_plus/internet_connection_checker_plus.dart';
 import 'core/services/caching_service.dart';
+import 'features/auth/presentation/providers/sign_out_controller.dart';
 import 'features/home/data/datasources/home_remote_datasource.dart';
 import 'features/home/domain/usecases/home_usecases.dart';
 import 'features/home/presentation/providers/home_controller.dart';
@@ -72,6 +73,9 @@ void _injectAuth() {
         signUpUseCase: sl<SignUpUseCase>(),
         signInUseCase: sl<SignInUseCase>(),
       ));
+  sl.registerLazySingleton<SignOutController>(() => SignOutController(
+    signOutUseCase: sl<SignOutUseCase>(),
+  ));
 }
 
 void _injectCore() {

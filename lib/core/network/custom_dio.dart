@@ -2,6 +2,8 @@ import 'dart:async';
 import 'dart:developer';
 
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
+import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 import '../../di.dart';
 import '../helpers/ui_helpers.dart';
@@ -21,14 +23,14 @@ class CustomDio {
   );
 
   static final List<Interceptor> _interceptors = [
-    // if (kDebugMode)
-    //   PrettyDioLogger(
-    //     request: true,
-    //     requestHeader: false,
-    //     requestBody: true,
-    //     responseHeader: false,
-    //     responseBody: true,
-    //   ),
+    if (kDebugMode)
+      PrettyDioLogger(
+        request: true,
+        requestHeader: false,
+        requestBody: true,
+        responseHeader: false,
+        responseBody: true,
+      ),
     _RetryInterceptor(),
   ];
 

@@ -29,9 +29,6 @@ class AuthRepositoryImpl extends AuthRepository {
       final authToken = await remoteDatasource.signUp(
           model.email, model.password, model.name);
       localDatasource.saveAuthToken(authToken);
-
-      await remoteDatasource.saveUserInDb(model.email, model.name);
-
       return const Right(NoParams());
     } on FirebaseAuthException catch (e) {
       log(e.message.toString());

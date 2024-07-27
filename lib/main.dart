@@ -1,18 +1,16 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_remote_config/firebase_remote_config.dart';
-import 'package:hive/hive.dart';
-import 'features/auth/presentation/providers/auth_controller.dart';
-import 'router_config/router_config.dart';
-import 'package:provider/provider.dart';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:hive/hive.dart';
+import 'package:path_provider/path_provider.dart' as path_provider;
+import 'package:provider/provider.dart';
 
 import 'core/constants/app_theme.dart';
-import 'package:path_provider/path_provider.dart' as path_provider;
-
 import 'di.dart' as di;
+import 'features/auth/presentation/providers/sign_out_controller.dart';
 import 'firebase_options.dart';
+import 'router_config/router_config.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -42,13 +40,18 @@ class _App extends StatelessWidget {
     return ScreenUtilInit(
       designSize: const Size(393, 852),
       builder: (context, child) => MultiProvider(
-        providers: [],
-        child: MaterialApp.router(
-          debugShowCheckedModeBanner: false,
-          title: 'PingoLearn Demo',
-          scaffoldMessengerKey: kScaffoldMessengerKey,
-          theme: kTheme,
-          routerConfig: router,
+        providers: [
+          ChangeNotifierProvider(
+              create: (context) => di.sl<SignOutController>()),
+        ],
+        child: Consumer<SignOutController>(
+          builder: (context, value, child) => MaterialApp.router(
+            debugShowCheckedModeBanner: false,
+            title: 'PingoLearn Demo',
+            scaffoldMessengerKey: kScaffoldMessengerKey,
+            theme: kTheme,
+            routerConfig: router,
+          ),
         ),
       ),
     );

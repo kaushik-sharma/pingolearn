@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../../../auth/presentation/providers/sign_out_controller.dart';
 import '../providers/home_controller.dart';
 import 'package:provider/provider.dart';
 
@@ -27,6 +28,7 @@ class _HomePageHandler extends StatefulWidget {
 
 class _HomePageHandlerState extends State<_HomePageHandler> {
   late final _controller = context.read<HomeController>();
+  late final _signOutController = context.read<SignOutController>();
 
   @override
   void initState() {
@@ -46,7 +48,9 @@ class _HomePageHandlerState extends State<_HomePageHandler> {
           backgroundColor: Theme.of(context).primaryColor,
           actions: [
             IconButton(
-              onPressed: () {},
+              onPressed: () {
+                _signOutController.signOut();
+              },
               icon: const Icon(Icons.logout_rounded),
             ),
           ],
