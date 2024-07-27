@@ -32,6 +32,7 @@ class AuthController extends ChangeNotifier {
   void toggleAuthMode() {
     _authMode =
         _authMode == AuthMode.signUp ? AuthMode.signIn : AuthMode.signUp;
+    _formKey.currentState!.reset();
     _emailController.clear();
     _passwordController.clear();
     _nameController.clear();
