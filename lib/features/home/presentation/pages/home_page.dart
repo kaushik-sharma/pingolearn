@@ -58,18 +58,18 @@ class _HomePageHandlerState extends State<_HomePageHandler> {
         body: _controller.isLoading
             ? const Center(child: CircularProgressIndicator())
             : RefreshIndicator.adaptive(
-          onRefresh: () async {
-            await _controller.getComments();
-          },
-          child: ListView.separated(
-            padding: EdgeInsets.all(20.r),
-            itemCount: _controller.comments.length,
-            itemBuilder: (context, index) => CommentCard(
-                comment: _controller.comments[index],
-                maskEmail: _controller.maskEmail),
-            separatorBuilder: (context, index) => 15.verticalSpace,
-          ),
-        ),
+                onRefresh: () async {
+                  await _controller.getComments();
+                },
+                child: ListView.separated(
+                  padding: EdgeInsets.all(20.r),
+                  itemCount: _controller.comments.length,
+                  itemBuilder: (context, index) => CommentCard(
+                      comment: _controller.comments[index],
+                      maskEmail: _controller.maskEmail),
+                  separatorBuilder: (context, index) => 15.verticalSpace,
+                ),
+              ),
       ),
     );
   }

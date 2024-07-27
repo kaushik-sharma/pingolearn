@@ -74,8 +74,8 @@ void _injectAuth() {
         signInUseCase: sl<SignInUseCase>(),
       ));
   sl.registerLazySingleton<SignOutController>(() => SignOutController(
-    signOutUseCase: sl<SignOutUseCase>(),
-  ));
+        signOutUseCase: sl<SignOutUseCase>(),
+      ));
 }
 
 void _injectCore() {

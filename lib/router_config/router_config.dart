@@ -23,30 +23,30 @@ enum Routes {
 }
 
 GoRouter get router => GoRouter(
-  initialLocation: _getInitialRoute(),
-  navigatorKey: _rootNavigatorKey,
-  debugLogDiagnostics: true,
-  routes: [
-    GoRoute(
-      name: Routes.auth.name,
-      path: Routes.auth.path,
-      pageBuilder: (context, state) => _buildPage(
-        state.pageKey,
-        state.name!,
-        const AuthPage(),
-      ),
-    ),
-    GoRoute(
-      name: Routes.home.name,
-      path: Routes.home.path,
-      pageBuilder: (context, state) => _buildPage(
-        state.pageKey,
-        state.name!,
-        const HomePage(),
-      ),
-    ),
-  ],
-);
+      initialLocation: _getInitialRoute(),
+      navigatorKey: _rootNavigatorKey,
+      debugLogDiagnostics: true,
+      routes: [
+        GoRoute(
+          name: Routes.auth.name,
+          path: Routes.auth.path,
+          pageBuilder: (context, state) => _buildPage(
+            state.pageKey,
+            state.name!,
+            const AuthPage(),
+          ),
+        ),
+        GoRoute(
+          name: Routes.home.name,
+          path: Routes.home.path,
+          pageBuilder: (context, state) => _buildPage(
+            state.pageKey,
+            state.name!,
+            const HomePage(),
+          ),
+        ),
+      ],
+    );
 
 Page<MaterialPage> _buildPage(LocalKey key, String name, Widget child) {
   return MaterialPage(
