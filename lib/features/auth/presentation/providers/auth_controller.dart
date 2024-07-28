@@ -21,6 +21,7 @@ class AuthController extends ChangeNotifier {
   final _nameController = TextEditingController();
   bool _isLoading = false;
   AuthMode _authMode = AuthMode.signUp;
+  final _scrollController = ScrollController();
 
   GlobalKey<FormState> get formKey => _formKey;
   TextEditingController get emailController => _emailController;
@@ -28,6 +29,7 @@ class AuthController extends ChangeNotifier {
   TextEditingController get nameController => _nameController;
   bool get isLoading => _isLoading;
   AuthMode get authMode => _authMode;
+  ScrollController get scrollController => _scrollController;
 
   void toggleAuthMode() {
     _authMode =
@@ -76,11 +78,19 @@ class AuthController extends ChangeNotifier {
     return result.fold<bool>((left) => false, (right) => true);
   }
 
+  void scrollToBottom() async {
+    await Future.delayed(Duration(milliseconds: 200));
+    _scrollController.animateTo(
+        _scrollController.position.maxScrollExtent
+    , duration: Duration(milliseconds: 300), curve: Curves.easeIn);
+  }
+
   @override
   void dispose() {
     _emailController.dispose();
     _passwordController.dispose();
     _nameController.dispose();
+    scrollController.dispose();
     super.dispose();
   }
 }

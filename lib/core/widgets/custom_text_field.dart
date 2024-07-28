@@ -11,6 +11,7 @@ class CustomTextField extends StatelessWidget {
     required this.textCapitalization,
     required this.hintText,
     this.obscureText = false,
+    this.onTap,
   });
 
   final TextEditingController controller;
@@ -20,6 +21,7 @@ class CustomTextField extends StatelessWidget {
   final TextCapitalization textCapitalization;
   final String hintText;
   final bool obscureText;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -27,6 +29,7 @@ class CustomTextField extends StatelessWidget {
       controller: controller,
       validator: validator,
       onChanged: onChanged,
+      onTap: onTap,
       keyboardType: keyboardType,
       textCapitalization: textCapitalization,
       obscureText: obscureText,

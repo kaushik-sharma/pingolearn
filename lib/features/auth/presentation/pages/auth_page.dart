@@ -9,6 +9,7 @@ import '../../../../core/helpers/ui_helpers.dart';
 import '../../../../core/widgets/custom_button.dart';
 import '../../../../core/widgets/custom_text_field.dart';
 import '../../../../di.dart';
+import '../../../../gen/assets.gen.dart';
 import '../../../../router_config/router_config.dart';
 import '../providers/auth_controller.dart';
 
@@ -42,35 +43,44 @@ class _AuthPageHandlerState extends State<_AuthPageHandler> {
           title: Text(
               _controller.authMode == AuthMode.signUp ? 'Sign Up' : 'Sign In'),
         ),
-        body: Padding(
-          padding: EdgeInsets.all(20.r),
-          child: Stack(
-            children: [
-              SizedBox(
-                width: double.infinity,
-                height: double.infinity,
-                child: ListView(
-                  children: [
-                    100.verticalSpace,
-                    _buildForm(),
-                    200.verticalSpace,
-                  ],
+        body: SafeArea(
+          child: Padding(
+            padding: EdgeInsets.all(20.r),
+            child: Stack(
+              children: [
+                SizedBox(
+                  width: double.infinity,
+                  height: double.infinity,
+                  child: ListView(
+                    controller: _controller.scrollController,
+                    children: [
+                      Image.asset(
+                        Assets.images.authentication.path,
+                        height: 200.h,
+                        fit: BoxFit.contain,
+                      ),
+                      40.verticalSpace,
+                      _buildForm(),
+                      // SizedBox(height: MediaQuery.viewInsetsOf(context).bottom),
+                      200.verticalSpace,
+                    ],
+                  ),
                 ),
-              ),
-              Positioned(
-                bottom: 0,
-                left: 0,
-                right: 0,
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    _buildCTA(),
-                    10.verticalSpace,
-                    _buildModeController(),
-                  ],
+                Positioned(
+                  bottom: 0,
+                  left: 0,
+                  right: 0,
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      _buildCTA(),
+                      10.verticalSpace,
+                      _buildModeController(),
+                    ],
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
@@ -116,6 +126,7 @@ class _AuthPageHandlerState extends State<_AuthPageHandler> {
                 keyboardType: TextInputType.name,
                 textCapitalization: TextCapitalization.words,
                 hintText: 'Name',
+                onTap: _controller.scrollToBottom,
               ),
               20.verticalSpace,
             ],
@@ -133,6 +144,7 @@ class _AuthPageHandlerState extends State<_AuthPageHandler> {
               keyboardType: TextInputType.emailAddress,
               textCapitalization: TextCapitalization.none,
               hintText: 'Email',
+              onTap: _controller.scrollToBottom,
             ),
             20.verticalSpace,
             CustomTextField(
@@ -147,6 +159,7 @@ class _AuthPageHandlerState extends State<_AuthPageHandler> {
               textCapitalization: TextCapitalization.none,
               hintText: 'Password',
               obscureText: true,
+              onTap: _controller.scrollToBottom,
             ),
           ],
         ),
