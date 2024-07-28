@@ -5,22 +5,22 @@ import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:internet_connection_checker_plus/internet_connection_checker_plus.dart';
-import 'core/services/caching_service.dart';
-import 'features/auth/presentation/providers/sign_out_controller.dart';
-import 'features/home/data/datasources/home_remote_datasource.dart';
-import 'features/home/domain/usecases/home_usecases.dart';
-import 'features/home/presentation/providers/home_controller.dart';
 
 import 'core/network/custom_dio.dart';
 import 'core/network/network_info.dart';
+import 'core/services/caching_service.dart';
 import 'features/auth/data/datasources/auth_local_datasource.dart';
 import 'features/auth/data/datasources/auth_remote_datasource.dart';
 import 'features/auth/data/repositories/auth_repository_impl.dart';
 import 'features/auth/domain/repositories/auth_repository.dart';
 import 'features/auth/domain/usecases/auth_usecases.dart';
 import 'features/auth/presentation/providers/auth_controller.dart';
+import 'features/auth/presentation/providers/sign_out_controller.dart';
+import 'features/home/data/datasources/home_remote_datasource.dart';
 import 'features/home/data/repositories/home_repository_impl.dart';
 import 'features/home/domain/repositories/home_repository.dart';
+import 'features/home/domain/usecases/home_usecases.dart';
+import 'features/home/presentation/providers/home_controller.dart';
 
 final GetIt sl = GetIt.instance;
 

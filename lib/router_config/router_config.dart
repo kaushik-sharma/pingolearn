@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import '../features/home/presentation/pages/home_page.dart';
 
 import '../core/helpers/ui_helpers.dart';
 import '../di.dart';
 import '../features/auth/data/datasources/auth_local_datasource.dart';
 import '../features/auth/presentation/pages/auth_page.dart';
+import '../features/home/presentation/pages/home_page.dart';
 
 final _rootNavigatorKey = GlobalKey<NavigatorState>();
 

@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
-import '../models/get_comments_response_model.dart';
 import 'package:retrofit/retrofit.dart';
+
+import '../models/get_comments_response_model.dart';
 
 part 'home_remote_datasource.g.dart';
 

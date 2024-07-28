@@ -1,7 +1,7 @@
-import '../../../../core/usecases/usecase.dart';
 import 'package:dartz/dartz.dart';
 
 import '../../../../core/failures/failure.dart';
+import '../../../../core/usecases/usecase.dart';
 import '../../data/models/sign_in_request_model.dart';
 import '../../data/models/sign_up_request_model.dart';
 

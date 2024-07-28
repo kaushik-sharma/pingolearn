@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../../auth/presentation/providers/sign_out_controller.dart';
-import '../providers/home_controller.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../di.dart';
+import '../../../auth/presentation/providers/sign_out_controller.dart';
+import '../providers/home_controller.dart';
 import '../widgets/comment_card.dart';
 
 class HomePage extends StatelessWidget {

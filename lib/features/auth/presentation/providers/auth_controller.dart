@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import '../../data/models/sign_up_request_model.dart';
 
 import '../../data/models/sign_in_request_model.dart';
+import '../../data/models/sign_up_request_model.dart';
 import '../../domain/usecases/auth_usecases.dart';
 
 enum AuthMode { signIn, signUp }
@@ -24,11 +24,17 @@ class AuthController extends ChangeNotifier {
   final _scrollController = ScrollController();
 
   GlobalKey<FormState> get formKey => _formKey;
+
   TextEditingController get emailController => _emailController;
+
   TextEditingController get passwordController => _passwordController;
+
   TextEditingController get nameController => _nameController;
+
   bool get isLoading => _isLoading;
+
   AuthMode get authMode => _authMode;
+
   ScrollController get scrollController => _scrollController;
 
   void toggleAuthMode() {
@@ -79,10 +85,9 @@ class AuthController extends ChangeNotifier {
   }
 
   void scrollToBottom() async {
-    await Future.delayed(Duration(milliseconds: 200));
-    _scrollController.animateTo(
-        _scrollController.position.maxScrollExtent
-    , duration: Duration(milliseconds: 300), curve: Curves.easeIn);
+    await Future.delayed(const Duration(milliseconds: 200));
+    _scrollController.animateTo(_scrollController.position.maxScrollExtent,
+        duration: const Duration(milliseconds: 300), curve: Curves.easeIn);
   }
 
   @override
